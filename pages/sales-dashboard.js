@@ -27,16 +27,24 @@ function getRevenue() {
 
 function OrdersContent () {
     const { orders, isLoading, isError } = getOrders()
-    if (isLoading) return <div>wtf</div>
-    return <h1>hello {orders.orders[0].qld} 555</h1>
-    
+    if (isLoading) {
+        return (
+            <div>Loading</div>
+        )
+    } else {
+        return (
+            <div>
+                {/* Line graph with orders passed in */}
+            </div>
+        )
+    }
 }
 
 function RevenueContent () {
     const { revenue, isLoading, isError } = getRevenue()
     if (isLoading) {
         return (
-            <div>Error page</div>
+            <div>Loading</div>
         )
     } else {
         return (
