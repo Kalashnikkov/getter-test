@@ -33,7 +33,7 @@ function OrdersContent () {
 }
 
 function RevenueContent () {
-    const { orders, isLoading, isError } = getRevenue()
+    const { revenue, isLoading, isError } = getRevenue()
     if (isLoading) {
         return (
             <div>wtf</div>
@@ -41,7 +41,9 @@ function RevenueContent () {
     } else {
         return (
             <div>
-                <BarGraph/>
+                <BarGraph
+                    revenue={revenue}
+                />
             </div>
         )
     }
