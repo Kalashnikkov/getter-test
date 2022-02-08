@@ -36,13 +36,13 @@ function RevenueContent () {
     const { revenue, isLoading, isError } = getRevenue()
     if (isLoading) {
         return (
-            <div>wtf</div>
+            <div>Error page</div>
         )
     } else {
         return (
             <div>
                 <BarGraph
-                    revenue={revenue}
+                    revenue={revenue.revenueThisWeek}
                 />
             </div>
         )
