@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
-import useSWR from'swr'
+import useSWR from 'swr'
+import BarGraph from './Bar'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -28,6 +29,7 @@ export default function Dashboard() {
                 <a>Go back a page</a>
             </Link>
             <Content/>
+            <BarGraph/>
             </h1>
         </div>
     )
