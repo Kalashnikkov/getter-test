@@ -2,12 +2,22 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import useSWR from'swr'
 
-function getData() {
-    const { data, error } = useSWR('/api/getRevenue', fetch)
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-    if (error) return <div>failed to load</div>
-    if (!data) return <div>loading...</div>
-    return <div>{data}</div>
+function getOrders() {
+    const { data, error } = useSWR('/api/getOrders', fetcher)
+
+    return {
+        orders: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
+
+function Content () {
+    const { orders, isLoading, isError } = getOrders()
+    if (isLoading) return <div>wtf</div>
+    return <h1>hello {orders.orders[0].qld} 555</h1>
 }
 
 export default function Dashboard() {
@@ -17,7 +27,7 @@ export default function Dashboard() {
             <Link href="/">
                 <a>Go back a page</a>
             </Link>
-            <button>Click me to call getData</button>
+            <Content/>
             </h1>
         </div>
     )
