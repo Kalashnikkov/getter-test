@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import useSWR from 'swr'
 import BarGraph from './Bar'
+import LineGraph from './Line'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -34,7 +35,9 @@ function OrdersContent () {
     } else {
         return (
             <div>
-                {/* Line graph with orders passed in */}
+                <LineGraph
+                    orders={orders.orders}
+                />
             </div>
         )
     }
@@ -65,7 +68,7 @@ export default function Dashboard() {
                 <a>Go back a page</a>
             </Link>
             <OrdersContent/>
-            <RevenueContent/>
+            {/* <RevenueContent/> */}
             </h1>
         </div>
     )
