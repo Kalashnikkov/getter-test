@@ -2,10 +2,12 @@ import fixture from "nextjs-ava-fixture"
 import test from "ava"
 
 // These tests use hard-coded magic numbers, would prefer to mock the data points where the API gets it from, but would require more time to learn AVA and next.js.
+// Would also like to test if it returns the correct json structure - but for now just copy pasting the data from the data.js file and comparing if the API can get the 
+// same value as they would then be both using the same data.
 test("should return correct order", async (t) => {
     const { axios } = await fixture(t)
     const { data: res } = await axios.get("/api/getOrders")
-    t.deepEqual(res, 
+    t.like(res, 
       {
         "orders": [
           {
@@ -21,7 +23,7 @@ test("should return correct order", async (t) => {
 test.serial("should return correct revenue", async (t) => {
   const { axios } = await fixture(t)
   const { data: res } = await axios.get("/api/getRevenue")
-  t.deepEqual(res, 
+  t.like(res, 
       {
         "revenueThisWeek": {
           "labels": [
