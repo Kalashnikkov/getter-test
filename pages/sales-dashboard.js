@@ -15,10 +15,36 @@ function getOrders() {
     }
 }
 
-function Content () {
+function getRevenue() {
+    const { data, error } = useSWR('/api/getRevenue', fetcher)
+
+    return {
+        revenue: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
+
+function OrdersContent () {
     const { orders, isLoading, isError } = getOrders()
     if (isLoading) return <div>wtf</div>
     return <h1>hello {orders.orders[0].qld} 555</h1>
+    
+}
+
+function RevenueContent () {
+    const { orders, isLoading, isError } = getRevenue()
+    if (isLoading) {
+        return (
+            <div>wtf</div>
+        )
+    } else {
+        return (
+            <div>
+                <BarGraph/>
+            </div>
+        )
+    }
 }
 
 export default function Dashboard() {
@@ -28,8 +54,8 @@ export default function Dashboard() {
             <Link href="/">
                 <a>Go back a page</a>
             </Link>
-            <Content/>
-            <BarGraph/>
+            <OrdersContent/>
+            <RevenueContent/>
             </h1>
         </div>
     )

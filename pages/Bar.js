@@ -2,39 +2,29 @@ import React from 'react';
 import {Bar} from 'react-chartjs-2';
 import Chart from 'chart.js/auto'
 
-const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  datasets: [{
-    label: '# of Votes',
-    data: [12, 19, 3, 5, 2, 3],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(255, 159, 64, 0.2)'
-    ],
-    borderColor: [
-      'rgba(255, 99, 132, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)'
-    ],
-    borderWidth: 1
-  }]
+const data2 = {
+  labels: ['11/12', '12/12', '13/12', '14/12'], // TODO: you'll need to loop through some dates here (I recommend date-fns)
+  datasets: [
+    {
+      data: [8459,12924,10926,9652],  // Hint: Maybe you can format the Axes "ticks" so it returns a nice format? e.g. $8.4k
+      borderColor: '#f58120',
+      backgroundColor: '#f58120',
+    }
+  ]
+}
+
+function formatData (data) {
+  console.log(data)
+  console.log("HELLO")
+  return data2
 }
 
 export default () => ({
-  displayName: 'BarExample',
   render() {
     return (
       <div>
-        <h2>Bar Example (custom size)</h2>
         <Bar
-          data={data}
+          data={formatData()}
           width={400}
           height={200}
           options={{
