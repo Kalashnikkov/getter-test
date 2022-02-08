@@ -7,7 +7,7 @@ import test from "ava"
 test("should return correct order", async (t) => {
     const { axios } = await fixture(t)
     const { data: res } = await axios.get("/api/getOrders")
-    t.like(res, 
+    t.deepEqual(res, 
       {
         "orders": [
           {
@@ -23,7 +23,7 @@ test("should return correct order", async (t) => {
 test.serial("should return correct revenue", async (t) => {
   const { axios } = await fixture(t)
   const { data: res } = await axios.get("/api/getRevenue")
-  t.like(res, 
+  t.deepEqual(res, 
       {
         "revenueThisWeek": {
           "labels": [
