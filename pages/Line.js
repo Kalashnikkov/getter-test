@@ -3,6 +3,7 @@ import {Line} from 'react-chartjs-2';
 import Chart from 'chart.js/auto'
 
 function formatData (input) {
+  // Data already comes in correct format
   const labels = input.labels
   const datasets = input.datasets
   return {
@@ -19,7 +20,10 @@ export default (revenue) => ({
           width={400}
           height={200}
           options={{
-            maintainAspectRatio: true
+            maintainAspectRatio: true,
+            plugins: {
+              legend: false
+            }
           }}
         />
     );

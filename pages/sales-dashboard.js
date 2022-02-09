@@ -56,48 +56,6 @@ function RevenueContent () {
     }
 }
 
-function ExampleData () {
-    const { revenue, isLoading, isError } = getRevenue()
-    if (isLoading) {
-        return (
-            <div>Loading</div>
-        )
-    } else {
-        return (
-            <div class="flex flex-row mt-8">
-                <div class="w-6/12">
-                    <p>
-                        Date
-                    </p>
-                    <hr/>
-                    {revenue.revenueThisWeek.labels.map(date => {
-                            return(
-                                <p class="text-gray-400">
-                                    {date}
-                                </p>
-                            )
-                        }
-                    )}
-                </div>
-                <div class="w-6/12">
-                    <p>
-                        Revenue
-                    </p>
-                    <hr/>
-                    {revenue.revenueThisWeek.datasets[0].data.map(value => {
-                            return(
-                                <p class="text-gray-400">
-                                    ${value}
-                                </p>
-                            )
-                        }
-                    )}
-                </div>
-            </div>
-        )
-    }
-}
-
 export default function Dashboard() {
     return (
         <div class="bg-gray-100 flex lg:h-screen h-full min-h-screen flex-col md:flex-row">
@@ -119,6 +77,7 @@ export default function Dashboard() {
             <div class="flex flex-wrap flex-col bg-gray-100 w-full p-8 justify-center">
                 <div class="flex flex-col flex-wrap justify-around lg:flex-row items-center">
                     {/* Graph Cards */}
+                    {/* Can throw these into a single component and reuse instead of repeating code */}
                     <div class="bg-white w-11/12 lg:w-5/12 p-6 m-1 rounded-xl drop-shadow-xl">
                         <h1 class="text-3xl">
                             Orders

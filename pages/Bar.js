@@ -3,6 +3,7 @@ import {Bar} from 'react-chartjs-2';
 import Chart from 'chart.js/auto'
 
 function formatData (input) {
+  // Putting data into format of react-chartjs
   const labels = Object.keys(input)
   const rawData = Object.values(input)
   var datasets = []
@@ -23,7 +24,10 @@ export default (orders) => ({
           width={400}
           height={200}
           options={{
-            maintainAspectRatio: true
+            maintainAspectRatio: true,
+            plugins: {
+              legend: false
+            }
           }}
         />
     );
