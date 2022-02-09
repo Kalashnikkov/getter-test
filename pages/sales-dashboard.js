@@ -68,7 +68,7 @@ export default function Dashboard() {
                 <a>Go back a page</a>
             </Link>
             <OrdersContent/>
-            {/* <RevenueContent/> */}
+            <RevenueContent/>
             </h1>
         </div>
     )
