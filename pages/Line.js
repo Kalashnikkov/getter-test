@@ -1,25 +1,22 @@
 import React from 'react';
-import {Line, Bar} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 import Chart from 'chart.js/auto'
 
 function formatData (input) {
-  const labels = Object.keys(input)
-  const rawData = Object.values(input)
-  var datasets = []
-  var obj = { data: rawData }
-  datasets.push(obj)
+  const labels = input.labels
+  const datasets = input.datasets
   return {
     labels,
     datasets
   }
 }
 
-export default (orders) => ({
+export default (revenue) => ({
   render() {
     return (
       <div>
         <Line
-          data={formatData(orders.orders[0])}
+          data={formatData(revenue.revenue)}
           width={400}
           height={200}
           options={{

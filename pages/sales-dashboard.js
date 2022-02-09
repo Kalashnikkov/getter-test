@@ -35,7 +35,7 @@ function OrdersContent () {
     } else {
         return (
             <div>
-                <LineGraph
+                <BarGraph
                     orders={orders.orders}
                 />
             </div>
@@ -52,7 +52,7 @@ function RevenueContent () {
     } else {
         return (
             <div>
-                <BarGraph
+                <LineGraph
                     revenue={revenue.revenueThisWeek}
                 />
             </div>
@@ -62,14 +62,18 @@ function RevenueContent () {
 
 export default function Dashboard() {
     return (
-        <div className={styles.container}>
-            <h1 className="title">
-            <Link href="/">
-                <a>Go back a page</a>
-            </Link>
-            <OrdersContent/>
-            <RevenueContent/>
-            </h1>
+        <div class="bg-gray-200 h-screen flex items-center justify-center">
+            <div>
+                <Link href="/">
+                    <a>Go back a page</a>
+                </Link>
+            </div>
+            <div>
+                <OrdersContent/>
+            </div>
+            <div>
+                <RevenueContent/>
+            </div>
         </div>
     )
 }
