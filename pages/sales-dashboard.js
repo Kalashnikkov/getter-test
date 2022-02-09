@@ -34,11 +34,9 @@ function OrdersContent () {
         )
     } else {
         return (
-            <div>
                 <BarGraph
                     orders={orders.orders}
                 />
-            </div>
         )
     }
 }
@@ -51,10 +49,50 @@ function RevenueContent () {
         )
     } else {
         return (
-            <div>
                 <LineGraph
                     revenue={revenue.revenueThisWeek}
                 />
+        )
+    }
+}
+
+function ExampleData () {
+    const { revenue, isLoading, isError } = getRevenue()
+    if (isLoading) {
+        return (
+            <div>Loading</div>
+        )
+    } else {
+        return (
+            <div class="flex flex-row mt-8">
+                <div class="w-6/12">
+                    <p>
+                        Date
+                    </p>
+                    <hr/>
+                    {revenue.revenueThisWeek.labels.map(date => {
+                            return(
+                                <p class="text-gray-400">
+                                    {date}
+                                </p>
+                            )
+                        }
+                    )}
+                </div>
+                <div class="w-6/12">
+                    <p>
+                        Revenue
+                    </p>
+                    <hr/>
+                    {revenue.revenueThisWeek.datasets[0].data.map(value => {
+                            return(
+                                <p class="text-gray-400">
+                                    ${value}
+                                </p>
+                            )
+                        }
+                    )}
+                </div>
             </div>
         )
     }
@@ -62,17 +100,44 @@ function RevenueContent () {
 
 export default function Dashboard() {
     return (
-        <div class="bg-gray-200 h-screen flex items-center justify-center">
-            <div>
-                <Link href="/">
-                    <a>Go back a page</a>
-                </Link>
+        <div class="bg-gray-100 flex lg:h-screen h-full min-h-screen flex-col md:flex-row">
+            {/* Sidebar Container */}
+            <div class="bg-green-600">
+                <div class="flex flex-row md:flex-col">
+                    <Link href="/">
+                        <button class="bg-green-600 hover:bg-green-700 px-4 py-2 mx-4 my-2 border border-transparent font-medium rounded-md text-white">
+                            Back
+                        </button>
+                    </Link>
+                    <button class="bg-green-700 hover:bg-green-800 px-4 py-2 mx-4 my-2 border border-transparent font-medium rounded-md text-white">
+                        Graphs
+                    </button>
+                </div>
             </div>
-            <div>
-                <OrdersContent/>
-            </div>
-            <div>
-                <RevenueContent/>
+
+            {/* Graphs container */}
+            <div class="flex flex-wrap flex-col bg-gray-100 w-full p-8 justify-center">
+                <div class="flex flex-col flex-wrap justify-around lg:flex-row items-center">
+                    {/* Graph Cards */}
+                    <div class="bg-white w-11/12 lg:w-5/12 p-6 m-1 rounded-xl drop-shadow-xl">
+                        <h1 class="text-3xl">
+                            Orders
+                        </h1>
+                        <p class="text-gray-500">
+                            # of orders per state
+                        </p>
+                        <OrdersContent/>
+                    </div>
+                    <div class="bg-white w-11/12 lg:w-5/12 p-6 m-1 rounded-xl drop-shadow-xl">
+                        <h1 class="text-3xl">
+                            Revenue
+                        </h1>
+                        <p class="text-gray-500">
+                            $ per day
+                        </p>
+                        <RevenueContent/>
+                    </div>
+                </div>
             </div>
         </div>
     )

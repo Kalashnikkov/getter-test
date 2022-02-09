@@ -14,7 +14,6 @@ function formatData (input) {
 export default (revenue) => ({
   render() {
     return (
-      <div>
         <Line
           data={formatData(revenue.revenue)}
           width={400}
@@ -23,7 +22,6 @@ export default (revenue) => ({
             maintainAspectRatio: true
           }}
         />
-      </div>
     );
   }
 });

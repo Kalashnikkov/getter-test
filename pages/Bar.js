@@ -18,7 +18,6 @@ function formatData (input) {
 export default (orders) => ({
   render() {
     return (
-      <div>
         <Bar
           data={formatData(orders.orders[0])}
           width={400}
@@ -27,7 +26,6 @@ export default (orders) => ({
             maintainAspectRatio: true
           }}
         />
-      </div>
     );
   }
 });
