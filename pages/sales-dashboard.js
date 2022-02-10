@@ -43,7 +43,7 @@ function OrdersContent () {
         }
         console.log(combinedData)
         return(
-            <div>
+            <div class="flex flex-row justify-between">
                 {combinedData.map(x => {
                     return(
                         <Card
@@ -72,6 +72,12 @@ function RevenueContent () {
     }
 }
 
+function getCurrentDate() {
+    var data = new Date()
+    var time = data.toISOString()
+    return time
+}
+
 export default function Dashboard() {
     return (
         <div class="bg-gray-100 flex lg:h-screen h-full min-h-screen flex-col md:flex-row">
@@ -91,6 +97,9 @@ export default function Dashboard() {
 
             {/* Graphs container */}
             <div class="flex flex-wrap flex-col bg-gray-100 w-full p-8 justify-center">
+                <div class="items-center flex flex-col italic text-lg text-gray-500">
+                    Data as of: {getCurrentDate()}
+                </div>
                 <div class="flex justify-around flex-col items-center">
                     {/* Graph Cards */}
                     {/* Can throw these into a single component and reuse instead of repeating code */}
