@@ -1,8 +1,10 @@
-import styles from '../styles/Home.module.css'
+import React from 'react';
 import Link from 'next/link'
 import useSWR from 'swr'
 import BarGraph from './Bar'
 import LineGraph from './Line'
+import StateCard from './Card'
+import Card from './Card';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -33,10 +35,24 @@ function OrdersContent () {
             <div>Loading</div>
         )
     } else {
-        return (
-                <BarGraph
-                    orders={orders.orders}
-                />
+        const labels = Object.keys(orders.orders[0])
+        const rawData = Object.values(orders.orders[0])
+        const combinedData = []
+        for (var i = 0; i < labels.length; i++) {
+            combinedData.push([labels[i], rawData[i]])
+        }
+        console.log(combinedData)
+        return(
+            <div>
+                {combinedData.map(x => {
+                    return(
+                        <Card
+                            label={x[0]}
+                            data={x[1]}
+                        />
+                    )
+                })}
+            </div>
         )
     }
 }
@@ -75,7 +91,7 @@ export default function Dashboard() {
 
             {/* Graphs container */}
             <div class="flex flex-wrap flex-col bg-gray-100 w-full p-8 justify-center">
-                <div class="flex flex-col flex-wrap justify-around lg:flex-row items-center">
+                <div class="flex justify-around flex-col items-center">
                     {/* Graph Cards */}
                     {/* Can throw these into a single component and reuse instead of repeating code */}
                     <div class="bg-white w-11/12 lg:w-5/12 p-6 m-1 rounded-xl drop-shadow-xl">
