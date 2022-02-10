@@ -1,16 +1,14 @@
 import React from 'react';
 import Link from 'next/link'
 import useSWR from 'swr'
-import BarGraph from './Bar'
 import LineGraph from './Line'
-import StateCard from './Card'
 import Card from './Card';
+import moment from 'moment'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 function getOrders() {
     const { data, error } = useSWR('/api/getOrders', fetcher)
-
     return {
         orders: data,
         isLoading: !error && !data,
@@ -20,7 +18,6 @@ function getOrders() {
 
 function getRevenue() {
     const { data, error } = useSWR('/api/getRevenue', fetcher)
-
     return {
         revenue: data,
         isLoading: !error && !data,
@@ -73,9 +70,8 @@ function RevenueContent () {
 }
 
 function getCurrentDate() {
-    var data = new Date()
-    var time = data.toISOString()
-    return time
+    var formattedTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+    return formattedTime
 }
 
 export default function Dashboard() {
@@ -103,7 +99,7 @@ export default function Dashboard() {
                 <div class="flex justify-around flex-col items-center">
                     {/* Graph Cards */}
                     {/* Can throw these into a single component and reuse instead of repeating code */}
-                    <div class="bg-white w-11/12 lg:w-5/12 p-6 m-1 rounded-xl drop-shadow-xl">
+                    <div class="bg-white w-6/12 p-6 m-1 rounded-xl drop-shadow-xl">
                         <h1 class="text-3xl">
                             Orders
                         </h1>
@@ -112,7 +108,7 @@ export default function Dashboard() {
                         </p>
                         <OrdersContent/>
                     </div>
-                    <div class="bg-white w-11/12 lg:w-5/12 p-6 m-1 rounded-xl drop-shadow-xl">
+                    <div class="bg-white w-6/12 p-6 m-1 rounded-xl drop-shadow-xl">
                         <h1 class="text-3xl">
                             Revenue
                         </h1>
