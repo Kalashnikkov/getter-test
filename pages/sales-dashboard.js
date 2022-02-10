@@ -92,7 +92,7 @@ export default function Dashboard() {
             </div>
 
             {/* Graphs container */}
-            <div class="flex flex-wrap flex-col bg-gray-100 w-full p-8 justify-center">
+            <div class="flex flex-col bg-gray-100 w-full p-8 justify-center">
                 <div class="items-center flex flex-col italic text-lg text-gray-500">
                     Data as of: {getCurrentDate()}
                 </div>
