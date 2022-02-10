@@ -5,6 +5,7 @@ import LineGraph from './Line'
 import Card from './Card';
 import moment from 'moment'
 
+// Needed for SWR - React hooks for data fetching - simple library used
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 function getOrders() {
@@ -34,11 +35,13 @@ function OrdersContent () {
     } else {
         const labels = Object.keys(orders.orders[0])
         const rawData = Object.values(orders.orders[0])
+        
+        // Create tuple array to combine both data into an array format instead of an object - could possibly be done by passing the whole object into the Card component, time limiting
         const combinedData = []
         for (var i = 0; i < labels.length; i++) {
             combinedData.push([labels[i], rawData[i]])
         }
-        console.log(combinedData)
+        
         return(
             <div class="flex flex-row justify-between">
                 {combinedData.map(x => {
@@ -69,6 +72,7 @@ function RevenueContent () {
     }
 }
 
+// Using momentJS to get current time and date
 function getCurrentDate() {
     var formattedTime = moment().format('MMMM Do YYYY, h:mm:ss a');
     return formattedTime
